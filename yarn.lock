@@ -1878,7 +1878,7 @@
     clsx "^2.0.0"
     prop-types "^15.8.1"
 
-"@mui/material@^5.0.0", "@mui/material@^5.8.6":
+"@mui/material@^5.0.0", "@mui/material@^5.14.10", "@mui/material@^5.8.6":
   version "5.14.10"
   resolved "https://registry.npmjs.org/@mui/material/-/material-5.14.10.tgz"
   integrity sha512-ejFMppnO+lzBXpzju+N4SSz0Mhmi5sihXUGcr5FxpgB6bfUP0Lpe32O0Sw/3s8xlmLEvG1fqVT0rRyAVMlCA+A==

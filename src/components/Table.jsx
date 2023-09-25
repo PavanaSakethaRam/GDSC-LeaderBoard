@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Card, Typography } from "@material-tailwind/react";
-import Pagination from "@mui/lab/Pagination";
+import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 
 const Table = () => {
   const TABLE_HEAD = ["#", "Username", "Score", "Roll No"];
   const [data, setData] = useState([]);
-  const [page, setPage] = useState(1); // Current page
-  const itemsPerPage = 10; // Number of items per page
-  const [totalPages, setTotalPages] = useState(1); // Total number of pages
+  const [page, setPage] = useState(1);
+  const itemsPerPage = 10;
+  const [totalPages, setTotalPages] = useState(1);
 
   const fetchData = async () => {
     const startIndex = (page - 1) * itemsPerPage;
@@ -29,7 +29,6 @@ const Table = () => {
   }, [page]);
 
   useEffect(() => {
-    // Fetch the total number of records and calculate the total number of pages
     const fetchTotalPages = async () => {
       const response = await fetch("https://sheetdb.io/api/v1/t073br34uobvq");
       const jsonData = await response.json();
