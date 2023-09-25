@@ -6,11 +6,13 @@ import { useCallback } from "react";
 import Particles from "react-particles";
 import { loadFireflyPreset } from "tsparticles-preset-firefly";
 import Table from "./components/Table";
+import Navbar from "./components/Navbar";
 
 function App() {
   const particlesInit = useCallback(async (engine) => {
     await loadFireflyPreset(engine);
-  }, []);
+}, []);
+  const colors = ["#ffffff", "#000000"];
   const particlesConfig = {
     preset: "firefly",
     particles: {
@@ -21,11 +23,11 @@ function App() {
         type: "circle",
       },
       size: {
-        value: 7,
+        value: 10,
       },
       move: {
         enable: true,
-        speed: 5,
+        speed: 4,
       },
       opacity: {
         value: 1,
@@ -34,11 +36,11 @@ function App() {
         value: 100,
       },
       number: {
-        value: 150,
+        value: 80,
       },
       line_linked: {
         enable: true,
-        distance: 150,
+        distance: 100,
         color: "#ffffff",
         opacity: 0.4,
       },
@@ -53,11 +55,14 @@ function App() {
       },
     },
     background: {
-      color: "#ffffff",
+      color: {
+        value: colors[0],
+      },
     },
   };
   return (
     <>
+      <Navbar />
       <Particles options={particlesConfig} init={particlesInit} />
       <Routes>
         <Route path="/" element={<Table />} />
