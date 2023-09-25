@@ -42,7 +42,7 @@ const Table = () => {
 
   return (
     <>
-      <Card className="h-full w-full overflow-y-scroll">
+      <Card className="h-full w-full overflow-y-scroll flex justify-center">
         <table className="w-full min-w-max table-auto text-left">
           <thead>
             <tr>

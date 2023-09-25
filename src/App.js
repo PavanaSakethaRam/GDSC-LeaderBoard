@@ -6,7 +6,7 @@ import { useCallback } from "react";
 import Particles from "react-particles";
 import { loadFireflyPreset } from "tsparticles-preset-firefly";
 import Table from "./components/Table";
-import Navbar from "./components/Navbar";
+import Header from "./components/Header";
 
 function App() {
   const particlesInit = useCallback(async (engine) => {
@@ -62,7 +62,7 @@ function App() {
   };
   return (
     <>
-      <Navbar />
+      <Header />
       {/* <Particles options={particlesConfig} init={particlesInit} /> */}
       <Routes>
         <Route path="/" element={<Table />} />
