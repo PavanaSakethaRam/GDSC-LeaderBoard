@@ -63,7 +63,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <Particles options={particlesConfig} init={particlesInit} />
+      {/* <Particles options={particlesConfig} init={particlesInit} /> */}
       <Routes>
         <Route path="/" element={<Table />} />
       </Routes>

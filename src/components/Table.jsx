@@ -14,11 +14,10 @@ const Table = () => {
     const startIndex = (page - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const response = await fetch(
-      `http://localhost:8000`
+      `https://sheetdb.io/api/v1/5u7hjxu35r5pk?limit=100&sort_by=Score&sort_order=desc&offset=${startIndex}&limit=${10}`
     );
     const jsonData = await response.json();
     setData(jsonData);
-    console.log(jsonData);
   };
 
   const handleChangePage = (event, newPage) => {
@@ -31,7 +30,7 @@ const Table = () => {
 
   useEffect(() => {
     const fetchTotalPages = async () => {
-      const response = await fetch("http://localhost:8000");
+      const response = await fetch("https://sheetdb.io/api/v1/5u7hjxu35r5pk");
       const jsonData = await response.json();
       const totalRecords = jsonData.length;
       const calculatedTotalPages = Math.ceil(totalRecords / itemsPerPage);
@@ -62,25 +61,26 @@ const Table = () => {
           </thead>
           <tbody>
             {data.map(({ Username, Score, RNo }, index) => (
-              <tr key={Username} className="even:bg-blue-gray-50/50">
+              <tr key={index}>
                 <td className="p-4">
                   <Typography variant="small" color="blue-gray" className="font-normal">
-                    {index + 1}
+                    {/* Ranking System */}
+                    {(page - 1) * itemsPerPage + index + 1}
                   </Typography>
                 </td>
                 <td className="p-4">
-                  <Typography variant="small" color="blue-gray" className="font-normal">
+                  <Typography variant="small" className="font-normal">
                     {Username}
                   </Typography>
                 </td>
                 <td className="p-4">
                   <Typography variant="small" color="blue-gray" className="font-normal">
-                    {Score}
+                    {Score || ' '}
                   </Typography>
                 </td>
                 <td className="p-4">
                   <Typography variant="small" color="blue-gray" className="font-normal">
-                    {RNo}
+                    {RNo || ' '}
                   </Typography>
                 </td>
               </tr>
