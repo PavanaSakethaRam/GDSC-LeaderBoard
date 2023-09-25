@@ -1,52 +1,70 @@
 import {
   Routes,
   Route,
-  useNavigationType,
-  useLocation,
 } from "react-router-dom";
-import Leaderboard from "./pages/Leaderboard";
-import { useEffect } from "react";
+import { useCallback } from "react";
+import Particles from "react-particles";
+import { loadFireflyPreset } from "tsparticles-preset-firefly";
+import Table from "./components/Table";
 
 function App() {
-  const action = useNavigationType();
-  const location = useLocation();
-  const pathname = location.pathname;
+  const particlesInit = useCallback(async (engine) => {
+    await loadFireflyPreset(engine);
+  }, []);
+  const particlesConfig = {
+    preset: "firefly",
+    particles: {
+      color: {
+        value: ["#4285F4", "#0F9D58", "#F4B400", "#DB4437"]
+      },
+      shape: {
+        type: "circle",
+      },
+      size: {
+        value: 7,
+      },
+      move: {
+        enable: true,
+        speed: 5,
+      },
+      opacity: {
+        value: 1,
+      },
+      rotate: {
+        value: 100,
+      },
+      number: {
+        value: 150,
+      },
+      line_linked: {
+        enable: true,
+        distance: 150,
+        color: "#ffffff",
+        opacity: 0.4,
+      },
 
-  useEffect(() => {
-    if (action !== "POP") {
-      window.scrollTo(0, 0);
-    }
-  }, [action, pathname]);
-
-  useEffect(() => {
-    let title = "";
-    let metaDescription = "";
-
-    switch (pathname) {
-      case "/":
-        title = "";
-        metaDescription = "";
-        break;
-    }
-
-    if (title) {
-      document.title = title;
-    }
-
-    if (metaDescription) {
-      const metaDescriptionTag = document.querySelector(
-        'head > meta[name="description"]'
-      );
-      if (metaDescriptionTag) {
-        metaDescriptionTag.content = metaDescription;
-      }
-    }
-  }, [pathname]);
-
+    },
+    interactivity: {
+      events: {
+        onhover: {
+          enable: true,
+          mode: "repulse",
+        },
+      },
+    },
+    background: {
+      color: "#ffffff",
+    },
+  };
   return (
-    <Routes>
-      <Route path="/" element={<Leaderboard />} />
-    </Routes>
+    <>
+      <Particles options={particlesConfig} init={particlesInit} />
+      <Routes>
+        <Route path="/" element={<Table />} />
+      </Routes>
+
+    </>
+
   );
 }
 export default App;
