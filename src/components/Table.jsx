@@ -14,10 +14,11 @@ const Table = () => {
     const startIndex = (page - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const response = await fetch(
-      `https://sheetdb.io/api/v1/t073br34uobvq?sort_by=Score&sort_order=desc&cast_numbers=Score&limit=${itemsPerPage}&offset=${startIndex}`
+      `http://localhost:8000`
     );
     const jsonData = await response.json();
     setData(jsonData);
+    console.log(jsonData);
   };
 
   const handleChangePage = (event, newPage) => {
@@ -30,7 +31,7 @@ const Table = () => {
 
   useEffect(() => {
     const fetchTotalPages = async () => {
-      const response = await fetch("https://sheetdb.io/api/v1/t073br34uobvq");
+      const response = await fetch("http://localhost:8000");
       const jsonData = await response.json();
       const totalRecords = jsonData.length;
       const calculatedTotalPages = Math.ceil(totalRecords / itemsPerPage);
